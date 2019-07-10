@@ -26,16 +26,28 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user
-      if curr_user.id == @user.id
-        render json: @user
-      else
-        render json: {errors: "Page not found, please try again!"}
-      end
+    if @user.save
+      render json: @user
     else
       render json: {errors: "This user was not found!"}
     end
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(
+      name: params[:name],
+      image: params[:image],
+      location: params[:location],
+      email: params[:email]
+    )
+    if @user.save
+      render json: @user
+    else
+      render json: {erros: "Info not valid"}
+    end
+  end
+
 
   def destroy
     @user = User.find(params[:id])

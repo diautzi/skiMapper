@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :trails, through: :comments
 
   has_secure_password
-  # validates :email, uniqueness: true, presence:true
-  # validates :name
+   validates :email, uniqueness: true, presence:true
+   validates :name, presence:true
 
 end

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::API
 	end
 
 	def curr_user
-		User.find_by(id: decode_token)
+		curr_user = User.find_by(id: decode_token)
 	end
 
 
